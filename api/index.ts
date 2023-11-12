@@ -9,10 +9,12 @@ import morgan from "morgan";
 import jwt from "jsonwebtoken";
 
 const app = express();
-
+console.log("====================================");
+console.log(process.env.originArr);
+console.log("====================================");
 app.use(
   cors({
-    origin: JSON.parse(process.env.originArr || ""),
+    origin: JSON.parse(process.env.originArr!),
     credentials: true,
   })
 );
@@ -21,14 +23,11 @@ app.use(morgan("dev"));
 
 // mongoose
 import mongoose from "mongoose";
-import { log } from "console";
 
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(
-    process.env.MONGO_URL || "mongodb://localhost:27017/where-s-vader"
-  );
+  await mongoose.connect(process.env.MONGO_URL!);
 }
 
 // Serve static files
@@ -39,12 +38,12 @@ app.use(express.json());
 
 app.post("/api/v1/start", (req, res) => {
   const data: Data = { list: randomThree(list), start: new Date() };
-  res.json(jwt.sign(data, process.env.JWT_SECRET || ""));
+  res.json(jwt.sign(data, process.env.JWT_SECRET!));
 });
 
 app.post("/api/v1/capture", (req, res) => {
   const { id, x, y, token } = req.body;
-  const data = jwt.verify(token, process.env.JWT_SECRET || "") as Data;
+  const data = jwt.verify(token, process.env.JWT_SECRET!) as Data;
   const [{ x1, y1, x2, y2 }] = coordinates.filter((c) => c.id == id);
   // check if in range
   if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
@@ -57,7 +56,7 @@ app.post("/api/v1/capture", (req, res) => {
         data.end = new Date();
       }
       // send new data
-      res.json(jwt.sign(data, process.env.JWT_SECRET || ""));
+      res.json(jwt.sign(data, process.env.JWT_SECRET!));
     }
   } else {
     res.status(400).send("Out of range");
@@ -67,10 +66,7 @@ app.post("/api/v1/capture", (req, res) => {
 app.post(
   "/api/v1/submit",
   asyncHandler(async (req, res) => {
-    const data = jwt.verify(
-      req.body.token,
-      process.env.JWT_SECRET || ""
-    ) as Data;
+    const data = jwt.verify(req.body.token, process.env.JWT_SECRET!) as Data;
     if (!data.start) {
       res.status(400).send("Game did not start");
     } else if (!data.end) {
