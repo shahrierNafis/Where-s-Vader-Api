@@ -9,9 +9,6 @@ import morgan from "morgan";
 import jwt from "jsonwebtoken";
 
 const app = express();
-console.log("====================================");
-console.log(process.env.originArr);
-console.log("====================================");
 app.use(
   cors({
     origin: JSON.parse(process.env.originArr!),
@@ -23,6 +20,7 @@ app.use(morgan("dev"));
 
 // mongoose
 import mongoose from "mongoose";
+import path from "path";
 
 main().catch((err) => console.log(err));
 
