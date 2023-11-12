@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Obiwan Kenobi",
+    "id": 1,
+    "img": "static/images/obiwan-kenobi.jpg"
+  },
+  {
+    "name": "Kylo Ren",
+    "id": 2,
+    "img": "static/images/kylo-ren.jpg"
+  },
+  {
+    "name": "Darth Vader",
+    "id": 3,
+    "img": "static/images/darth-vader.jpg"
+  },
+  {
+    "name": "Yoda",
+    "id": 4,
+    "img": "static/images/yoda.jpg"
+  },
+  {
+    "name": "Mace Windu",
+    "id": 5,
+    "img": "static/images/mace-windu.jpg"
+  },
+  {
+    "name": "Jabba the Hutt",
+    "id": 6,
+    "img": "static/images/jabba-the-hutt.jpg"
+  },
+  {
+    "name": "Qui-Gon Jinn",
+    "id": 7,
+    "img": "static/images/qui-gon-jinn.jpg"
+  },
+  {
+    "name": "Anakin Skywalker episode I",
+    "id": 8,
+    "img": "static/images/anakin-skywalker-episode-I.jpg"
+  },
+  {
+    "name": "Sheev Palpatine",
+    "id": 9,
+    "img": "static/images/sheev-palpatine.jpg"
+  }
+]
