@@ -11,7 +11,7 @@ import jwt from "jsonwebtoken";
 const app = express();
 app.use(
   cors({
-    origin: JSON.parse(process.env.originArr!),
+    origin: "https://where-s-vader.vercel.app",
     credentials: true,
   })
 );
